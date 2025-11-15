@@ -68,23 +68,28 @@ GET /api/admin/categories/ # Manage categories
    ```bash
    git clone <repository-url>
    cd business-directory
-Install dependencies
+    ```
+2. **Install dependencies**
 
-bash
+ ```bash
 pip install -r requirements.txt
-Run migrations
-
-bash
+ ```
+3. **Run migrations**
+ ```bash
 python manage.py migrate
-Create a superuser
+ ```
+4. **Create a superuser**
 
-bash
+ ```bash
 python manage.py createsuperuser
-Run the development server
+ ```
+5. **Run the development server**
 
-bash
+ ```bash
 python manage.py runserver
-⚙️ Configuration
+ ```
+
+***⚙️ Configuration**
 Django Settings
 Add to your INSTALLED_APPS:
 
