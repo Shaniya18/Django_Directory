@@ -33,3 +33,178 @@ A Django REST Framework-based business directory API that allows users to browse
 ## 🔌 API Endpoints
 
 ### Public Endpoints
+GET /api/listings/ # List all active business listings
+GET /api/listings/{id}/ # Retrieve specific listing
+POST /api/submissions/ # Submit new business for approval
+GET /api/categories/ # List all categories
+GET /api/categories/{id}/ # Retrieve specific category
+GET /api/listings/{id}/reviews/ # Get reviews for a listing
+POST /api/listings/{id}/reviews/ # Create review (authenticated)
+GET /api/listings/{id}/reviews/{id}/ # Get specific review
+GET /api/reviews/{id}/comments/ # Get comments for a review
+POST /api/reviews/{id}/comments/ # Create comment (authenticated)
+POST /api/register/ # User registration
+POST /api/login/ # User login
+
+text
+
+### Admin Endpoints
+GET /api/admin/submissions/ # List all submissions
+POST /api/admin/submissions/ # Create submission (admin)
+GET /api/admin/submissions/{id}/ # Retrieve submission
+PUT /api/admin/submissions/{id}/ # Update submission
+POST /api/admin/submissions/{id}/approve/ # Approve and publish submission
+POST /api/admin/submissions/{id}/reject/ # Reject submission
+GET /api/admin/listings/ # Manage all listings
+GET /api/admin/categories/ # Manage categories
+
+text
+
+---
+
+## 📦 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd business-directory
+Install dependencies
+
+bash
+pip install -r requirements.txt
+Run migrations
+
+bash
+python manage.py migrate
+Create a superuser
+
+bash
+python manage.py createsuperuser
+Run the development server
+
+bash
+python manage.py runserver
+⚙️ Configuration
+Django Settings
+Add to your INSTALLED_APPS:
+
+python
+INSTALLED_APPS = [
+    # ...
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_nested',
+    'directory',
+]
+REST Framework Configuration
+python
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+}
+💡 Usage Examples
+User Registration
+bash
+curl -X POST http://localhost:8000/api/register/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "email": "test@example.com", "password": "securepassword"}'
+User Login
+bash
+curl -X POST http://localhost:8000/api/login/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "password": "securepassword"}'
+Submit a Business
+bash
+curl -X POST http://localhost:8000/api/submissions/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "business_name": "Test Business",
+    "description": "A great test business",
+    "contact_email": "business@example.com",
+    "phone_number": "+1234567890",
+    "website_url": "https://example.com",
+    "category": 1,
+    "address": {
+      "street": "123 Test St",
+      "city": "Test City",
+      "province_state": "Test State",
+      "country": "Test Country"
+    }
+  }'
+Browse Listings
+bash
+curl http://localhost:8000/api/listings/
+🛠️ Admin Interface
+Access the Django admin interface at /admin/ to manage:
+
+User accounts and permissions
+
+Business categories and hierarchy
+
+Listing submissions and approvals
+
+Published business listings
+
+User reviews and comments
+
+Admin Features
+Submission Management – Approve or reject business submissions with bulk actions
+
+Listing Management – Activate/deactivate listings and update business information
+
+Category Management – Create and organize business categories
+
+User Management – Manage user accounts and admin privileges
+
+🧪 Testing
+Run the test suite:
+
+bash
+python manage.py test directory
+🔐 Permissions
+The API implements several permission classes:
+
+IsAdminOrReadOnly – Read access for all, write access for admins only
+
+IsOwnerOrReadOnly – Users can only modify their own content
+
+IsAdminUser – Admin-only access for sensitive operations
+
+IsAuthenticatedOrReadOnly – Authenticated users can write, anyone can read
+
+🏗️ Development
+Adding New Features
+Create model migrations
+
+bash
+python manage.py makemigrations
+Update serializers in serializers.py
+
+Add views in views.py
+
+Configure URLs in urls.py
+
+Update admin interface in admin.py
+
+Code Structure
+models.py – Database models and relationships
+
+serializers.py – API serializers for data transformation
+
+views.py – API endpoints and business logic
+
+urls.py – URL routing and nested routes
+
+admin.py – Django admin configuration
+
+permissions.py – Custom permission classes
+
+👩‍💻 Author
+Shaniya Saloni Sen
+Software Developer | Django & REST API Specialist
+
+Built with Django REST Framework following API development best practices and comprehensive security measures.
