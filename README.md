@@ -33,22 +33,22 @@ A Django REST Framework-based business directory API that allows users to browse
 ## 🔌 API Endpoints
 
 ### Public Endpoints
-GET /api/listings/ # List all active business listings
-GET /api/listings/{id}/ # Retrieve specific listing
-POST /api/submissions/ # Submit new business for approval
-GET /api/categories/ # List all categories
-GET /api/categories/{id}/ # Retrieve specific category
-GET /api/listings/{id}/reviews/ # Get reviews for a listing
-POST /api/listings/{id}/reviews/ # Create review (authenticated)
-GET /api/listings/{id}/reviews/{id}/ # Get specific review
-GET /api/reviews/{id}/comments/ # Get comments for a review
-POST /api/reviews/{id}/comments/ # Create comment (authenticated)
-POST /api/register/ # User registration
-POST /api/login/ # User login
-
-text
-
+ ```bash
+GET    /api/listings/                    # List all active business listings
+GET    /api/listings/{id}/              # Retrieve specific listing
+POST   /api/submissions/                # Submit new business for approval
+GET    /api/categories/                 # List all categories
+GET    /api/categories/{id}/            # Retrieve specific category
+GET    /api/listings/{id}/reviews/      # Get reviews for a listing
+POST   /api/listings/{id}/reviews/      # Create review (authenticated)
+GET    /api/listings/{id}/reviews/{id}/ # Get specific review
+GET    /api/reviews/{id}/comments/      # Get comments for a review
+POST   /api/reviews/{id}/comments/      # Create comment (authenticated)
+POST   /api/register/                   # User registration
+POST   /api/login/                      # User login
+ ```
 ### Admin Endpoints
+ ```bash
 GET /api/admin/submissions/ # List all submissions
 POST /api/admin/submissions/ # Create submission (admin)
 GET /api/admin/submissions/{id}/ # Retrieve submission
@@ -58,7 +58,7 @@ POST /api/admin/submissions/{id}/reject/ # Reject submission
 GET /api/admin/listings/ # Manage all listings
 GET /api/admin/categories/ # Manage categories
 
-text
+ ```
 
 ---
 
