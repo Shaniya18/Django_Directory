@@ -1,198 +1,50 @@
-## Business Directory API
-A Django REST Framework-based business directory API that allows users to browse listings, submit new businesses, and interact with reviews and comments.
+# Fiji Web Directory
 
-**Features**
--**Public Business Listings:** Browse active business listings with detailed information
+A secure, feature-rich web directory application built with PHP, featuring business listings, user management, and a protected admin panel.
 
-Business Submissions: Submit new businesses for review and approval
+---
 
-Category System: Organized business categories with parent-child relationships
+## 🚀 Features
 
-Review System: Users can leave reviews and comments on business listings
+### 👥 User Features
+- **User Registration & Login** – Secure authentication with strong password policies
+- **Business Listings** – Browse, search, and submit new listings
+- **Reviews & Ratings** – Share feedback on listed businesses
+- **Password Reset** – Email-based reset using PHPMailer + Gmail SMTP
+- **Contact System** – Send messages to directory administrators
 
-Admin Management: Comprehensive admin interface for managing submissions, listings, and categories
+### 🛡️ Admin/Staff Panel
+- **Separate Staff Portal** – Isolated admin area (`staff.php`)
+- **Dashboard** – Overview of listings, users, and reviews
+- **Content Management** – Approve, edit, or remove listings and reviews
+- **User Management** – Monitor and manage user accounts
+- **Message Center** – Handle user inquiries and contact forms
 
-User Authentication: Registration and login system with token-based authentication
+### 🔒 Security Highlights
+- **SQL Injection Prevention** – Parameterized queries and prepared statements
+- **XSS Protection** – Output encoding and input sanitization
+- **CSRF Protection** – Token-based form validation
+- **Secure Sessions** – HttpOnly cookies, SameSite policies, session timeouts
+- **File Upload Safety** – Type verification, size limits, random filenames
+- **Error Handling** – No sensitive data leakage; errors logged internally
+- **Password Policies** – 12+ characters with complexity requirements
+- **Account Lockout** – Rate limiting after failed login attempts
 
-Geolocation Support: Address management with latitude/longitude coordinates
+---
 
-Models
-Core Models
-User: Custom user model with admin privileges support
+## 🛠️ Tech Stack
 
-Category: Business categories with hierarchical structure
+- **Backend**: PHP 8.2+, MySQL
+- **Frontend**: HTML, CSS, JavaScript
+- **Libraries**: PHPMailer (for email)
+- **Security**: Custom session management, input validation, secure headers
+- **Tools**: XAMPP, Composer, Git
 
-Listing: Published business listings
+---
 
-Submission: Business submission requests awaiting approval
+## 📦 Installation
 
-Address: Geolocation data for listings and submissions
-
-Review: User reviews for business listings
-
-Comment: Comments on reviews
-
-API Endpoints
-Public Endpoints
-text
-GET    /api/listings/           # List all active business listings
-GET    /api/listings/{id}/      # Retrieve specific listing
-POST   /api/submissions/        # Submit new business for approval
-GET    /api/categories/         # List all categories
-GET    /api/categories/{id}/    # Retrieve specific category
-GET    /api/listings/{id}/reviews/          # Get reviews for a listing
-POST   /api/listings/{id}/reviews/          # Create review (authenticated)
-GET    /api/listings/{id}/reviews/{id}/     # Get specific review
-GET    /api/reviews/{id}/comments/          # Get comments for a review
-POST   /api/reviews/{id}/comments/          # Create comment (authenticated)
-POST   /api/register/           # User registration
-POST   /api/login/              # User login
-Admin Endpoints
-text
-GET    /api/admin/submissions/        # List all submissions
-POST   /api/admin/submissions/        # Create submission (admin)
-GET    /api/admin/submissions/{id}/   # Retrieve submission
-PUT    /api/admin/submissions/{id}/   # Update submission
-POST   /api/admin/submissions/{id}/approve/  # Approve and publish submission
-POST   /api/admin/submissions/{id}/reject/   # Reject submission
-GET    /api/admin/listings/           # Manage all listings
-GET    /api/admin/categories/         # Manage categories
-Installation
-Clone the repository:
-
-bash
-git clone <repository-url>
-cd business-directory
-Install dependencies:
-
-bash
-pip install -r requirements.txt
-Run migrations:
-
-bash
-python manage.py migrate
-Create a superuser:
-
-bash
-python manage.py createsuperuser
-Run the development server:
-
-bash
-python manage.py runserver
-Configuration
-Django Settings
-Add to your INSTALLED_APPS:
-
-python
-INSTALLED_APPS = [
-    # ...
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_framework_nested',
-    'directory',
-]
-Add REST Framework configuration:
-
-python
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ],
-}
-Usage Examples
-User Registration
-bash
-curl -X POST http://localhost:8000/api/register/ \
-  -H "Content-Type: application/json" \
-  -d '{"username": "testuser", "email": "test@example.com", "password": "securepassword"}'
-User Login
-bash
-curl -X POST http://localhost:8000/api/login/ \
-  -H "Content-Type: application/json" \
-  -d '{"username": "testuser", "password": "securepassword"}'
-Submit a Business
-bash
-curl -X POST http://localhost:8000/api/submissions/ \
-  -H "Content-Type: application/json" \
-  -d '{
-    "business_name": "Test Business",
-    "description": "A great test business",
-    "contact_email": "business@example.com",
-    "phone_number": "+1234567890",
-    "website_url": "https://example.com",
-    "category": 1,
-    "address": {
-      "street": "123 Test St",
-      "city": "Test City",
-      "province_state": "Test State",
-      "country": "Test Country"
-    }
-  }'
-Browse Listings
-bash
-curl http://localhost:8000/api/listings/
-Admin Interface
-Access the Django admin interface at /admin/ to manage:
-
-User accounts and permissions
-
-Business categories and hierarchy
-
-Listing submissions and approvals
-
-Published business listings
-
-User reviews and comments
-
-Admin Features
-Submission Management: Approve or reject business submissions with bulk actions
-
-Listing Management: Activate/deactivate listings and update business information
-
-Category Management: Create and organize business categories
-
-User Management: Manage user accounts and admin privileges
-
-Testing
-Run the test suite:
-
-bash
-python manage.py test directory
-Permissions
-The API implements several permission classes:
-
-IsAdminOrReadOnly: Read access for all, write access for admins only
-
-IsOwnerOrReadOnly: Users can only modify their own content
-
-IsAdminUser: Admin-only access for sensitive operations
-
-IsAuthenticatedOrReadOnly: Authenticated users can write, anyone can read
-
-Development
-Adding New Features
-Create model migrations: python manage.py makemigrations
-
-Update serializers in serializers.py
-
-Add views in views.py
-
-Configure URLs in urls.py
-
-Update admin interface in admin.py
-
-Code Structure
-models.py: Database models and relationships
-
-serializers.py: API serializers for data transformation
-
-views.py: API endpoints and business logic
-
-urls.py: URL routing and nested routes
-
-admin.py: Django admin configuration
-
-permissions.py: Custom permission classes
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Shaniya18/web_directory.git
+   cd web_directory
