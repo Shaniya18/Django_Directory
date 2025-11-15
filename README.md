@@ -1,50 +1,35 @@
-# Fiji Web Directory
+# Business Directory API
 
-A secure, feature-rich web directory application built with PHP, featuring business listings, user management, and a protected admin panel.
+A Django REST Framework-based business directory API that allows users to browse listings, submit new businesses, and interact with reviews and comments.
 
 ---
 
 ## 🚀 Features
 
-### 👥 User Features
-- **User Registration & Login** – Secure authentication with strong password policies
-- **Business Listings** – Browse, search, and submit new listings
-- **Reviews & Ratings** – Share feedback on listed businesses
-- **Password Reset** – Email-based reset using PHPMailer + Gmail SMTP
-- **Contact System** – Send messages to directory administrators
-
-### 🛡️ Admin/Staff Panel
-- **Separate Staff Portal** – Isolated admin area (`staff.php`)
-- **Dashboard** – Overview of listings, users, and reviews
-- **Content Management** – Approve, edit, or remove listings and reviews
-- **User Management** – Monitor and manage user accounts
-- **Message Center** – Handle user inquiries and contact forms
-
-### 🔒 Security Highlights
-- **SQL Injection Prevention** – Parameterized queries and prepared statements
-- **XSS Protection** – Output encoding and input sanitization
-- **CSRF Protection** – Token-based form validation
-- **Secure Sessions** – HttpOnly cookies, SameSite policies, session timeouts
-- **File Upload Safety** – Type verification, size limits, random filenames
-- **Error Handling** – No sensitive data leakage; errors logged internally
-- **Password Policies** – 12+ characters with complexity requirements
-- **Account Lockout** – Rate limiting after failed login attempts
+### 📋 Core Features
+- **Public Business Listings** – Browse active business listings with detailed information
+- **Business Submissions** – Submit new businesses for review and approval
+- **Category System** – Organized business categories with parent-child relationships
+- **Review System** – Users can leave reviews and comments on business listings
+- **Admin Management** – Comprehensive admin interface for managing submissions, listings, and categories
+- **User Authentication** – Registration and login system with token-based authentication
+- **Geolocation Support** – Address management with latitude/longitude coordinates
 
 ---
 
-## 🛠️ Tech Stack
+## 🏗️ Models
 
-- **Backend**: PHP 8.2+, MySQL
-- **Frontend**: HTML, CSS, JavaScript
-- **Libraries**: PHPMailer (for email)
-- **Security**: Custom session management, input validation, secure headers
-- **Tools**: XAMPP, Composer, Git
+### Core Models
+- **User** – Custom user model with admin privileges support
+- **Category** – Business categories with hierarchical structure
+- **Listing** – Published business listings
+- **Submission** – Business submission requests awaiting approval
+- **Address** – Geolocation data for listings and submissions
+- **Review** – User reviews for business listings
+- **Comment** – Comments on reviews
 
 ---
 
-## 📦 Installation
+## 🔌 API Endpoints
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Shaniya18/web_directory.git
-   cd web_directory
+### Public Endpoints
