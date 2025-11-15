@@ -147,3 +147,44 @@ Access the Django admin interface at `/admin/` to manage:
 - **Listing submissions and approvals**
 - **Published business listings**
 - **User reviews and comments**
+### Admin Features
+- **Submission Management** – Approve or reject business submissions with bulk actions
+- **Listing Management** – Activate/deactivate listings and update business information
+- **Category Management** – Create and organize business categories
+- **User Management** – Manage user accounts and admin privileges
+
+## 🧪 Testing
+
+Run the test suite:
+```bash
+python manage.py test directory
+```
+
+## 🔐 Permissions
+
+The API implements several permission classes:
+
+- **IsAdminOrReadOnly** – Read access for all, write access for admins only
+- **IsOwnerOrReadOnly** – Users can only modify their own content
+- **IsAdminUser** – Admin-only access for sensitive operations
+- **IsAuthenticatedOrReadOnly** – Authenticated users can write, anyone can read
+
+  ## 🏗️ Development
+
+### Adding New Features
+1. **Create model migrations**
+   ```bash
+   python manage.py makemigrations
+   ```
+2. **Update serializers** in `serializers.py`
+3. **Add views** in `views.py`
+4. **Configure URLs** in `urls.py`
+5. **Update admin interface** in `admin.py`
+
+### Code Structure
+- **models.py** – Database models and relationships
+- **serializers.py** – API serializers for data transformation
+- **views.py** – API endpoints and business logic
+- **urls.py** – URL routing and nested routes
+- **admin.py** – Django admin configuration
+- **permissions.py** – Custom permission classes
