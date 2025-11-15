@@ -138,3 +138,12 @@ curl -X POST http://localhost:8000/api/submissions/ \
 curl http://localhost:8000/api/listings/
 ```
 
+### 🛠️ Admin Interface
+
+Access the Django admin interface at `/admin/` to manage:
+
+- **User accounts and permissions**
+- **Business categories and hierarchy**
+- **Listing submissions and approvals**
+- **Published business listings**
+- **User reviews and comments**
